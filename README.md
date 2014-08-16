@@ -6,25 +6,14 @@ This bundle provides simple integration of RequireJS library into Symfony2.
 
 ```yaml
 kayue_requirejs:
-    bundles:
-        AcmeDemoBundle: 
-            baseUrl: bundles/acmedemo/scripts
-            builtUrl: bundles/acmedemo/scripts-built
-        FooBarBundle: ~
     requirejs: 
         src: "//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.8/require.min.js"
         binary: "node_modules/requirejs/bin/r.js"
-        config:
-            paths: 
-                "jquery": "../bower_components/jquery/dist/jquery"
-                "bootstrap": "../bower_components/bootstrap/js"
-                # This bundle will auto include the registered bundles:
-                # "acmedemo": "bundles/acmedemo/scripts"
-                # "foobar": "bundles/anotherdemo/scripts"
-            shim:
-                "bootstrap/dropdown": ["jquery"]
-        build:
-            optimize: "uglify2" # Default to "none"
+        optimize:
+            -
+                resource: @AcmeBundle/Resources/public
+                buildFile: build.js
+                mainConfigFile: config.js
     bower: 
         binary: "node_modules/bower/bin/bower"
 ```
